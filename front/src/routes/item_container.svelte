@@ -1,38 +1,29 @@
 <script>
 	import Item from './item.svelte';
-
-	const getData = async () => {
-		const res = await fetch('http://localhost:3000/api/library');
-		const data = await res.json();
-		return data;
-	};
+	import {getData} from './data.js'
+    
 </script>
 
-
 {#await getData()}
-    <p>Loading...</p>
+	<p>Loading...</p>
 {:then data}
-<div class="itemContainer">
-        {#each data as element}
-		<Item element={element}/>
-        {/each}
-    </div>
+	<div class="itemContainer">
+		{#each data as element}
+			<Item {element} />
+		{/each}
+	</div>
 {:catch error}
-    <p>Something wrong...</p>
+	<p>Something wrong...</p>
 {/await}
 
-
 <style>
-    .itemContainer {
-        display:flex;
-        flex-direction:row;
-        flex-wrap:wrap;
-        justify-content: center;
-        align-items: flex-start;
-        align-content: flex-start;
-        width:65%;
-        height:80vh;
-        overflow:auto;
-    }
+	.itemContainer {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-start;
+		align-content: flex-start;
+		overflow: auto;
+	}
 </style>
-
