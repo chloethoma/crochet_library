@@ -1,6 +1,9 @@
 const express = require('express');
-const { Pool } = require('pg');
 
+/*
+    Connexion database POSTGRESQL
+*/
+const { Pool } = require('pg');
 const pool = new Pool({
     user: "postgres",
     host: "localhost",
@@ -8,6 +11,20 @@ const pool = new Pool({
     password: "T0d&Capsul3!",
     port: 5432,
 });  
+
+/*
+    Connexion database VERCEL
+*/
+// const { Pool } = require('pg')
+// require('dotenv').config()
+// const pool = new Pool({
+//     connectionString: "postgres://default:Zgw2tcHqWD0h@ep-cool-snow-a2y9tgcd-pooler.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require",
+// })
+// const pool = new Pool({
+//     connectionString: process.env.POSTGRES_URL
+// })
+// console.log(pool)
+
 
 const app = express();
 app.use(express.urlencoded({extended:true}));
