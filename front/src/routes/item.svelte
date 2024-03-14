@@ -1,24 +1,33 @@
 <script>
-	import { Cloudinary } from '@cloudinary/url-gen';
+	// import { Cloudinary } from '@cloudinary/url-gen';
+	import {getPhotoFromCloudinary} from './data.js'
 	export let element;
 
-	const cld = new Cloudinary({
-		cloud: {
-			cloudName: 'dcgmvmf04'
-		}
-	});
-	const photo = cld
-		.image(element.photo)
-		.format('auto')
-		.quality('auto')
-		.toURL();
+	// const photo = getPhotoFromCloudinary(element)
+
+	// const cld = new Cloudinary({
+	// 	cloud: {
+	// 		cloudName: 'dcgmvmf04'
+	// 	}
+	// });
+	// const photo = cld
+	// 	.image(element.photo)
+	// 	.format('auto')
+	// 	.quality('auto')
+	// 	.toURL();
 </script>
 
 <a href="/item_infos/{element.id}">
 	<div class="item">
 		<p class="name">{element.name}</p>
 		<p class="category">{element.category}</p>
-		<img alt="Picture of {element.name}" class="photo" src={photo} />
+		{#await getPhotoFromCloudinary(element)}
+			<p>Loading...</p>
+		{:then data} 
+		<img alt="Picture of {data}" class="photo" src={data} />
+		{:catch}
+			<p>Something wrong...</p>
+		{/await}
 	</div>
 </a>
 

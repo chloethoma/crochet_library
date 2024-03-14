@@ -2,7 +2,6 @@
 	import Icon from '../assets/img/wool_icon.svelte';
 
 	let isLoggedIn = true;
-
 </script>
 
 <!-- Import Google Font -->

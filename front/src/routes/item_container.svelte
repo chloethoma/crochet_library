@@ -1,10 +1,10 @@
 <script>
 	import Item from './item.svelte';
-	import {getData} from './data.js'
+	import {getAllData} from './data.js'
     
 </script>
 
-{#await getData()}
+{#await getAllData()}
 	<p>Loading...</p>
 {:then data}
 	<div class="itemContainer">
