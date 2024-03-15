@@ -1,29 +1,25 @@
 const express = require('express');
 
 /*
-    Connexion database POSTGRESQL
+Connexion database POSTGRESQL
+*/
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//         user: "postgres",
+//         host: "localhost",
+//         database: "crochet_library",
+//         password: "T0d&Capsul3!",
+//         port: 5432,
+//     });  
+
+/*
+    Connexion database SUPABASE
 */
 const { Pool } = require('pg');
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "crochet_library",
-    password: "T0d&Capsul3!",
-    port: 5432,
-});  
-
-/*
-    Connexion database VERCEL
-*/
-// const { Pool } = require('pg')
-// require('dotenv').config()
-// const pool = new Pool({
-//     connectionString: "postgres://default:Zgw2tcHqWD0h@ep-cool-snow-a2y9tgcd-pooler.eu-central-1.aws.neon.tech:5432/verceldb?sslmode=require",
-// })
-// const pool = new Pool({
-//     connectionString: process.env.POSTGRES_URL
-// })
-// console.log(pool)
+    connectionString:"postgres://postgres.xwngsbqvrqlddcwhgekf:5p8DRnHneHU9NqFh@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+});
+    // kysely
 
 
 const app = express();
@@ -89,6 +85,19 @@ app.use(express.urlencoded({extended:true}));
 //     },
 // ];
 
+// const queryDataTest = "SELECT project.id, project.name,project.category, project.photo, project.year, project.month, project.customer, project.size, project.hook_number, project.notes, pattern.name, pattern.source, pattern.link, pattern.file FROM project INNER JOIN pattern_project_relation ON project.id = pattern_project_relation.project_id INNER JOIN pattern ON pattern_project_relation.pattern_id = pattern.id"
+
+app.get("/api/test", async (req, res) => {
+    try{
+        const queryResult = await pool.query('SELECT * FROM project')
+        res.status(200).json(queryResult.rows)
+
+    } catch(err) {
+        console.error("Erreur d'exécution de la requête GET:", err)
+        res.status(500).json({error:"Erreur"})
+    }
+})
+
 app.get("/api/all", async (req, res) => {
     try {
         const queryResult = await pool.query('SELECT id, name, category, photo FROM project ORDER BY id ASC');
@@ -111,15 +120,15 @@ app.get("/api/item/:id", async (req, res) => {
     }
 })
 
-app.post('/api/library', (req, res, next) => {
-    try {
-        console.log(req.body)
-        res.status(201).json({message:"Nouveau projet crée !"})
-    }catch (err) {
-        console.error("Erreur d'exécution de la requête POST :", err)
-        res.status(500).json({error:'Erreur'})
-    }
-});
+// app.post('/api/library', (req, res, next) => {
+//     try {
+//         console.log(req.body)
+//         res.status(201).json({message:"Nouveau projet crée !"})
+//     }catch (err) {
+//         console.error("Erreur d'exécution de la requête POST :", err)
+//         res.status(500).json({error:'Erreur'})
+//     }
+// });
 
 module.exports = app;
 
