@@ -110,22 +110,6 @@ app.get("/api/item/:id", async (req, res) => {
     }
 })
 
-app.get("/api/test", async (req, res) => {
-    try{
-        const queryResult = await pool.query(`
-        SELECT *
-        FROM project
-        `)
-
-        res.status(200).json(queryResult.rows)
-
-    } catch(err) {
-        console.error("Erreur d'exécution de la requête GET:", err)
-        res.status(500).json({error:"Erreur"})
-    }
-})
-
-
 // app.post('/api/library', (req, res, next) => {
 //     try {
 //         console.log(req.body)
