@@ -9,8 +9,8 @@ export const getAllData = async () => {
 export const getItemData = async (itemId) => {
     const res = await fetch(`http://localhost:3000/api/item/${itemId}`);
     const data = await res.json();
-    console.log(data)
-    return data;
+    console.log(data[0])
+    return data[0];
 };
 
 export const getPhotoFromCloudinary = async (item) => {

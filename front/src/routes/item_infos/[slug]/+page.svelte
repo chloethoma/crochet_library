@@ -10,10 +10,8 @@
 
 {#await getItemData(itemId)}
 	<p>Loading...</p>
-{:then data}
-	{#each data as element}
-		<ItemInfos {element} />
-	{/each}
+{:then item}
+		<ItemInfos {item} />
 {:catch error}
 	<p>Something wrong...</p>
 {/await}

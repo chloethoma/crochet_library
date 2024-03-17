@@ -1,20 +1,7 @@
 <script>
-	// import { Cloudinary } from '@cloudinary/url-gen';
 	import {getPhotoFromCloudinary} from './data.js'
 	export let element;
 
-	// const photo = getPhotoFromCloudinary(element)
-
-	// const cld = new Cloudinary({
-	// 	cloud: {
-	// 		cloudName: 'dcgmvmf04'
-	// 	}
-	// });
-	// const photo = cld
-	// 	.image(element.photo)
-	// 	.format('auto')
-	// 	.quality('auto')
-	// 	.toURL();
 </script>
 
 <a href="/item_infos/{element.id}">
