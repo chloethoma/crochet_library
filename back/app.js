@@ -1,4 +1,14 @@
 const express = require('express');
+const { Pool } = require('pg');
+const queryAllData = require('./query').queryAllData
+const getDataByProject = require('./query').getDataByProject
+
+/*
+    Connexion database SUPABASE
+*/
+const pool = new Pool({
+    connectionString:"postgres://postgres.xwngsbqvrqlddcwhgekf:5p8DRnHneHU9NqFh@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+});
 
 /*
 Connexion database POSTGRESQL
@@ -11,15 +21,6 @@ Connexion database POSTGRESQL
 //         password: "T0d&Capsul3!",
 //         port: 5432,
 //     });  
-
-/*
-    Connexion database SUPABASE
-*/
-const { Pool } = require('pg');
-const pool = new Pool({
-    connectionString:"postgres://postgres.xwngsbqvrqlddcwhgekf:5p8DRnHneHU9NqFh@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
-});
-    // kysely
 
 
 const app = express();
@@ -87,20 +88,9 @@ app.use(express.urlencoded({extended:true}));
 
 // const queryDataTest = "SELECT project.id, project.name,project.category, project.photo, project.year, project.month, project.customer, project.size, project.hook_number, project.notes, pattern.name, pattern.source, pattern.link, pattern.file FROM project INNER JOIN pattern_project_relation ON project.id = pattern_project_relation.project_id INNER JOIN pattern ON pattern_project_relation.pattern_id = pattern.id"
 
-app.get("/api/test", async (req, res) => {
-    try{
-        const queryResult = await pool.query('SELECT * FROM project')
-        res.status(200).json(queryResult.rows)
-
-    } catch(err) {
-        console.error("Erreur d'exécution de la requête GET:", err)
-        res.status(500).json({error:"Erreur"})
-    }
-})
-
 app.get("/api/all", async (req, res) => {
     try {
-        const queryResult = await pool.query('SELECT id, name, category, photo FROM project ORDER BY id ASC');
+        const queryResult = await pool.query(queryAllData);
         res.status(200).json(queryResult.rows);
     } catch (err) {
         console.error ("Erreur d'exécution de la requête :", err);
@@ -111,7 +101,7 @@ app.get("/api/all", async (req, res) => {
 app.get("/api/item/:id", async (req, res) => {
     try{
         const itemId = req.params.id
-        const queryResult = await pool.query(`SELECT id, name, category, photo FROM project WHERE id=${itemId}`)
+        const queryResult = await pool.query(getDataByProject(itemId))
         res.status(200).json(queryResult.rows)
 
     } catch(err) {
@@ -119,6 +109,22 @@ app.get("/api/item/:id", async (req, res) => {
         res.status(500).json({error:"Erreur"})
     }
 })
+
+app.get("/api/test", async (req, res) => {
+    try{
+        const queryResult = await pool.query(`
+        SELECT *
+        FROM project
+        `)
+
+        res.status(200).json(queryResult.rows)
+
+    } catch(err) {
+        console.error("Erreur d'exécution de la requête GET:", err)
+        res.status(500).json({error:"Erreur"})
+    }
+})
+
 
 // app.post('/api/library', (req, res, next) => {
 //     try {
@@ -132,22 +138,3 @@ app.get("/api/item/:id", async (req, res) => {
 
 module.exports = app;
 
-// SELECT
-// 	project.id,
-// 	project.name,
-// 	project.category, 
-// 	project.photo,
-// 	project.year,
-// 	project.month,
-// 	project.customer,
-// 	project.size,
-// 	project.hook_number,
-// 	project.notes,
-// 	pattern.name,
-// 	pattern.source,
-// 	pattern.link,
-// 	pattern.file,
-// 	GROUPE CONCAT ('source' SEPARATOR ",")
-// FROM project
-// INNER JOIN pattern_project_relation ON project.id = pattern_project_relation.project_id
-// INNER JOIN pattern ON pattern_project_relation.pattern_id = pattern.id
