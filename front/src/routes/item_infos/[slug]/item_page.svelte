@@ -1,6 +1,6 @@
 <script>
     import {getPhotoFromCloudinary} from '../../data.js'
-
+	
     export let item
 </script>
 
@@ -24,7 +24,7 @@
 
 	<p>{item.notes}</p>
 	
-    {#await getPhotoFromCloudinary(item)}
+    {#await getPhotoFromCloudinary(item.photo)}
     <p>Loading...</p>
     {:then img} 
     <img alt="Picture of {img}" class="photo" src={img} />

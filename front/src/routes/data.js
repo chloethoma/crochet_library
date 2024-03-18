@@ -13,18 +13,18 @@ export const getItemData = async (itemId) => {
     return data[0];
 };
 
-export const getPhotoFromCloudinary = async (item) => {
+export const getPhotoFromCloudinary = async (photo) => {
     const cld = new Cloudinary({
 		cloud: {
 			cloudName: 'dcgmvmf04'
 		}
 	});
 
-	const photo = cld
-		.image(item.photo)
+	const img = cld
+		.image(photo)
 		.format('auto')
 		.quality('auto')
 		.toURL();
 
-    return photo
+    return img
 }

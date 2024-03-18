@@ -1,6 +1,6 @@
 <script>
+	// import '../app.pcss';
 	import Icon from '../assets/img/wool_icon.svelte';
-
 	let isLoggedIn = true;
 </script>
 
@@ -9,21 +9,21 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&amp;display=swap"
 		rel="stylesheet"
 	/>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Madimi+One&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;family=Madimi+One&amp;family=Shantell+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap"
 		rel="stylesheet"
 	/>
 </svelte:head>
 
 <header>
 	<div class="left-content">
-		<Icon />
+		<Icon></Icon>
 	</div>
 
 	<div class="middle-content">
@@ -51,6 +51,8 @@
 		padding: 10px;
 		justify-content: space-between;
 		align-items: center;
+		border-bottom:solid #db8e9d;
+		border-top:solid #db8e9d;
 	}
 
 	.left-content {
