@@ -2,12 +2,13 @@ const express = require('express');
 const { Pool } = require('pg');
 const queryAllData = require('./query').queryAllData
 const getDataByProject = require('./query').getDataByProject
+require('dotenv').config()
 
 /*
     Connexion database SUPABASE
 */
 const pool = new Pool({
-    connectionString:"postgres://postgres.xwngsbqvrqlddcwhgekf:5p8DRnHneHU9NqFh@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+    connectionString:process.env.SUPABASE_URI
 });
 
 /*
