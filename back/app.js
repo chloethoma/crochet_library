@@ -4,15 +4,15 @@ const queryAllData = require('./query').queryAllData
 const getDataByProject = require('./query').getDataByProject
 require('dotenv').config()
 
+const app = express();
+app.use(express.urlencoded({extended:true}));
+
 /*
     Connexion database SUPABASE
 */
 const pool = new Pool({
     connectionString:process.env.SUPABASE_URI
 });
-
-const app = express();
-app.use(express.urlencoded({extended:true}));
 
 
 app.get("/api/all", async (req, res) => {
