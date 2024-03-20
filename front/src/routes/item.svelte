@@ -3,9 +3,6 @@
 	import Icon from '../assets/img/wool_icon.svelte';
 
 	export let element;
-
-	console.log(element)
-
 </script>
 
 <a href="/item_infos/{element.id}">
@@ -22,7 +19,7 @@
 		{/await}
 		{:else}
 		<div class="icon">
-			<Icon class="icon"></Icon>
+			<Icon></Icon>
 			<p>Photo à venir</p>
 		</div>
 		{/if}

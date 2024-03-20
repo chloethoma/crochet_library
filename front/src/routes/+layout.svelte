@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="middle-content">
-		<h1>Ma Bibliothèque Crochet</h1>
+		<h3>Ma Bibliothèque Crochet</h3>
 	</div>
 
 	<div class="right-content">
