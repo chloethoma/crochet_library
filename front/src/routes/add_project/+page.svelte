@@ -2,7 +2,7 @@
 
 </script>
 
-<form action='http://localhost:3000/api/library' method="post">
+<form action='http://localhost:3000/api/new_project' method="post">
     <label for="name">Nom du projet</label>
     <input type="text" id="name" name="name">
 
@@ -13,6 +13,15 @@
         <option value="amigurumi">Amigurumi</option>
         <option value="clothe">Vêtement</option>
     </select>
+
+    <label for="customer">Destinataire</label>
+    <input type="text" id="customer" name="customer">
+
+    <label for="hook_number">Hook Number</label>
+    <input type="text" id="hook_number" name="hook_number">
+
+    <label for="photo">Photo</label>
+    <input type="text" id="photo" name="photo">
     
     <label for="notes">Notes</label>
     <textarea id="notes" name="notes"></textarea>
@@ -24,7 +33,7 @@
     form {
         display:grid;
         grid-template-columns:120px 300px;
-        grid-template-rows: repeat(2, 30px) 100px;
+        /* grid-template-rows: repeat(2, 30px) 100px; */
         row-gap: 10px;;
     }
 </style>
