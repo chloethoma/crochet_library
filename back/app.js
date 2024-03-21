@@ -1,11 +1,13 @@
 const express = require('express');
 const { Pool } = require('pg');
+require('dotenv').config()
+
 const queryAllData = require('./query').queryAllData
 const getDataByProject = require('./query').getDataByProject
-require('dotenv').config()
 
 const app = express();
 app.use(express.urlencoded({extended:true}));
+app.use(express.json())
 
 /*
     Connexion database SUPABASE
@@ -43,15 +45,15 @@ app.get("/api/item/:id", async (req, res) => {
     }
 })
 
-// app.post('/api/library', (req, res, next) => {
-//     try {
-//         console.log(req.body)
-//         res.status(201).json({message:"Nouveau projet crée !"})
-//     }catch (err) {
-//         console.error("Erreur d'exécution de la requête POST :", err)
-//         res.status(500).json({error:'Erreur'})
-//     }
-// });
+app.post('/api/new_project', (req, res, next) => {
+    try {
+        console.log(req.body)
+        res.status(201).json({message:"Nouveau projet crée !"})
+    }catch (err) {
+        console.error("Erreur d'exécution de la requête POST :", err)
+        res.status(500).json({error:'Erreur'})
+    }
+});
 
 module.exports = app;
 
