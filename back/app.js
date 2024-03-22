@@ -16,6 +16,9 @@ const pool = new Pool({
     connectionString:process.env.SUPABASE_URI
 });
 
+/*
+    Gestion des CORS
+*/
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -23,6 +26,9 @@ app.use((req, res, next) => {
     next();
   });
 
+/*
+    Routes API
+*/
 app.get("/api/all", async (req, res) => {
     try {
         const queryResult = await pool.query(queryAllData);
