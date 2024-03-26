@@ -32,29 +32,14 @@ const getDataByProject = (projectId) => {
     project.*,
     json_agg(distinct pattern.*) as pattern,
     case
-      when count(wool.id) > 0 then json_agg(
+      when count(wool.id) > 0 then jsonb_agg(
         distinct json_build_object(
-          'id',
-          wool.id,
-          'brand',
-          wool.brand,
-          'name',
-          wool.name,
-          'grammage',
-          wool.grammage,
-          'color',
-          wool.color,
-          'material',
-          wool.material,
-          'price',
-          wool.price,
-          'quantity',
-          wool_project_relation.quantity
+          'id', wool.id, 'brand', wool.brand, 'name', wool.name, 'grammage', wool.grammage, 'color', wool.color, 'material', wool.material, 'price', wool.price, 'quantity', wool_project_relation.quantity
         )::jsonb
       )
       else json_agg(
         distinct wool.*
-      )::json
+      )::jsonb
     end as wool
   from
     project

@@ -3,7 +3,6 @@
 	import Icon from '../../../assets/img/wool_icon.svelte';
 
 	export let item;
-	console.log(item.notes)
 </script>
 
 <div class="itemContainer">

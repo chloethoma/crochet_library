@@ -12,7 +12,7 @@ app.use(express.json())
 /*
     Connexion database SUPABASE
 */
-const pool = new Pool({
+const db = new Pool({
     connectionString:process.env.SUPABASE_URI
 });
 
@@ -31,33 +31,62 @@ app.use((req, res, next) => {
 */
 app.get("/api/all", async (req, res) => {
     try {
-        const queryResult = await pool.query(queryAllData);
+        const queryResult = await db.query(queryAllData);
         res.status(200).json(queryResult.rows);
     } catch (err) {
-        console.error ("Erreur d'exécution de la requête :", err);
-        res.status(500).json({error: "Erreur"})
+        console.error ("Erreur d'exécution de GET api/all :", err);
+        res.status(500).json({message: err})
     }
 });
 
 app.get("/api/item/:id", async (req, res) => {
     try{
         const itemId = req.params.id
-        const queryResult = await pool.query(getDataByProject(itemId))
+        const queryResult = await db.query(getDataByProject(itemId))
         res.status(200).json(queryResult.rows)
 
     } catch(err) {
-        console.error("Erreur d'exécution de la requête GET:", err)
-        res.status(500).json({error:"Erreur"})
+        console.error("Erreur d'exécution de GET api/item :", err)
+        res.status(500).json({message: err})
     }
 })
 
-app.post('/api/new_project', (req, res, next) => {
+app.post('/api/new_project', async (req, res, next) => {
     try {
-        console.log(req.body)
-        res.status(201).json({message:"Nouveau projet crée !"})
-    }catch (err) {
-        console.error("Erreur d'exécution de la requête POST :", err)
-        res.status(500).json({error:'Erreur'})
+        const data = req.body[0]
+        const query = await db.query(
+            `BEGIN;
+
+            -- Insertion dans la table project
+            INSERT INTO project (name, category, customer, size, hook_number, notes, photo, year, month)
+            VALUES ('${data.name}', '${data.category}', '${data.customer}', '${data.size}', ${data.hook_number}, '${data.notes}', '${data.photo}', '${data.year}', '${data.month}')
+            RETURNING id INTO project_id;
+            
+            -- Insertion dans la table wool
+            INSERT INTO wool (brand, name, grammage, color, material, price)
+            VALUES ('Marque de la laine', 'Nom de la laine', 50, 'Couleur', 'Matériel', 10.00)
+            RETURNING id INTO wool_id;
+            
+            -- Insertion dans la table pattern
+            INSERT INTO pattern (name, source, link, file)
+            VALUES ('Nom du motif', 'Source', 'Lien', 'Fichier')
+            RETURNING id INTO pattern_id;
+            
+            -- Insertion dans la table de relation project_wool
+            INSERT INTO project_wool (project_id, wool_id)
+            VALUES (project_id, wool_id);
+            
+            -- Insertion dans la table de relation project_pattern
+            INSERT INTO project_pattern (project_id, pattern_id)
+            VALUES (project_id, pattern_id);
+            
+            COMMIT;
+            `            
+        )
+        res.status(201).json(data)
+    } catch (err) {
+        console.error("Erreur d'exécution de POST :", err)
+        res.status(500).json({message:err})
     }
 });
 
