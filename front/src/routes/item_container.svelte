@@ -1,7 +1,6 @@
 <script>
 	import Item from './item.svelte';
-	import {getAllData} from './data.js'
-    
+	import { getAllData } from './data.js';
 </script>
 
 {#await getAllData()}
@@ -27,4 +26,5 @@
 		align-content: flex-start;
 		overflow: auto;
 	}
+
 </style>
