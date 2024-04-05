@@ -159,7 +159,14 @@
 
 	.img {
 		/* width:66%; */
-		max-width: 90%;
+		max-width: 70%;
 		max-height: 100%;
 	}
+
+	@media screen and (min-width: 900px) {
+		.itemContainer{
+			max-width: 700px;
+		}
+	}
+
 </style>
