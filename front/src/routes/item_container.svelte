@@ -17,7 +17,6 @@
 
 <style>
 	.itemContainer {
-		background-color: #fdf9f6;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;

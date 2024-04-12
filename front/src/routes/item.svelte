@@ -32,14 +32,12 @@
 	.item {
 		flex: 0 0 auto;
 		flex-basis:20%;
-
 		display: grid;
 		grid-template-rows: 30px 30px minmax(50px, 200px);
+		max-width:130px;
+		max-height:250px;
 
 		font-family: 'Josefin Sans', sans-serif;
-		font-optical-sizing: auto;
-		font-style: normal;
-
 		color:#2d4743;
 		background-color: rgb(156, 187, 177, 0.5);
 		text-align: center;
@@ -53,8 +51,11 @@
 
 	.name {
 		font-weight: 700;
-		font-size: 18px;
-		border-bottom:1px solid;
+		font-size: 16px;
+	}
+
+	.category {
+		font-size:14px;
 	}
 
 	.photo {
@@ -65,4 +66,5 @@
 	a{
 		text-decoration: none;
 	}
+
 </style>

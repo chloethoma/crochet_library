@@ -3,3 +3,9 @@
 </script>
 
 <ItemContainer />
+
+<style>
+	*{
+		background-color: #fdf9f6;
+	}
+</style>

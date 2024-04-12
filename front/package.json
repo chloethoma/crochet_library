@@ -47,6 +47,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
+		"@cloudinary/transformation-builder-sdk": "^1.13.3",
 		"@cloudinary/url-gen": "^1.19.0",
 		"@popperjs/core": "^2.11.8",
 		"flowbite": "^2.3.0",
