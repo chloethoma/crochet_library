@@ -1,8 +1,10 @@
 <script>
 	import { getPhotoFromCloudinary } from '../../data.js';
 	import Icon from '../../../assets/img/wool_icon.svelte';
+	import { stringify } from 'postcss';
 
 	export let item;
+
 </script>
 
 <div class="itemContainer">
@@ -54,7 +56,6 @@
 						<div>{pattern.link}</div>
 						<div>Fichier :</div>
 						<div>{pattern.file}</div>
-						<!-- <div>----------</div> -->
 					</div>
 				{/each}
 			{/if}
@@ -77,7 +78,6 @@
 						<div>{wool.grammage} g/pelote</div>
 						<div>Prix :</div>
 						<div>{wool.price} €/pelote</div>
-						<!-- <div>----------</div> -->
 					</div>
 				{/each}
 			{/if}
@@ -97,7 +97,7 @@
 		color: #2d4743;
 		/* text-align: center; */
 		margin: 8px;
-		padding: 10px;
+		padding: 15px 20px 15px 10px;
 		border: 2px solid #2d4743;
 		border-radius: 2%;
 	}

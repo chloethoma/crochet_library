@@ -18,7 +18,7 @@
         position:absolute;
         z-index:1;
         background-color: #f7dfd4;
-        top:60px;
+        top:95px;
         right:8px;
         text-align: center;
 		border-bottom: solid #db8e9d 2px;
@@ -39,7 +39,7 @@
 
     @media screen and (min-width: 900px) {
         .menu{
-            top:80px;
+            top:110px;
         }
 
         p{

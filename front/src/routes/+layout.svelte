@@ -51,11 +51,13 @@
 </header>
 
 <Menu bind:open />
+
 <slot />
 
 <style>
-	*{
+	:global(*){
 		font-family: 'Josefin Sans', sans-serif;
+		white-space: pre-line;
 	}
 
 	header {
