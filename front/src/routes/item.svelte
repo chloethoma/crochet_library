@@ -37,7 +37,6 @@
 		max-width:130px;
 		max-height:250px;
 
-		font-family: 'Josefin Sans', sans-serif;
 		color:#2d4743;
 		background-color: rgb(156, 187, 177, 0.5);
 		text-align: center;
@@ -84,7 +83,7 @@
 	.category {
 		font-size:16px;
 	}
-	
+
 	}
 
 </style>

@@ -18,7 +18,7 @@
         position:absolute;
         z-index:1;
         background-color: #f7dfd4;
-        top:75px;
+        top:60px;
         right:8px;
         text-align: center;
 		border-bottom: solid #db8e9d 2px;
@@ -27,7 +27,6 @@
 
     a {
 		color: #db8e9d;
-        font-family: 'Josefin Sans', sans-serif;
 		font-size:15px;
 		text-decoration: none;
 		padding: 10px 10px;
@@ -40,7 +39,7 @@
 
     @media screen and (min-width: 900px) {
         .menu{
-            top:85px;
+            top:80px;
         }
 
         p{

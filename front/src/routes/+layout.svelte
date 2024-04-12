@@ -51,30 +51,33 @@
 </header>
 
 <Menu bind:open />
-
 <slot />
 
 <style>
+	*{
+		font-family: 'Josefin Sans', sans-serif;
+	}
+
 	header {
 		display: flex;
 		position:sticky;
 		z-index:2;
 		background-color: #f7dfd4;
 		color: #db8e9d;
-		font-family: 'Lemonada';
 		padding: 2px;
 		justify-content: space-between;
 		align-items: center;
 		border-bottom: solid #db8e9d 2px;
 		border-top: solid #db8e9d 2px;
 	}
-
+	
 	.logo {
 		margin-left: 5px;
 		margin-right: 15px;
 	}
-
+	
 	h1 {
+		font-family: 'Lemonada';
 		margin: 0;
 		font-size: 15px;
 	}

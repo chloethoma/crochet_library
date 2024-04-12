@@ -32,8 +32,7 @@
 <style>
     form {
         display:grid;
-        grid-template-columns:120px 300px;
-        /* grid-template-rows: repeat(2, 30px) 100px; */
+        grid-template-columns:auto;
         row-gap: 10px;;
     }
 </style>

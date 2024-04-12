@@ -92,7 +92,6 @@
 
 <style>
 	.itemContainer {
-		font-family: 'Josefin Sans', sans-serif;
 		background-color: rgb(156, 187, 177, 0.5);
 		font-size: 12px;
 		color: #2d4743;
@@ -113,9 +112,8 @@
 	.backLink {
 		z-index:1;
 		position:absolute;
-		right:0px;
+		left:0px;
 		background-color: transparent;
-		font-family: 'Josefin Sans', sans-serif;
 		font-size: 12px;
 		font-weight:700;
 		color: #2d4743;
