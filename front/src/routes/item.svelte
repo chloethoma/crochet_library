@@ -67,4 +67,24 @@
 		text-decoration: none;
 	}
 
+	@media screen and (min-width: 900px) {
+		.item {
+		grid-template-rows: 30px 30px minmax(50px, 240px);
+		min-width:200px;
+		min-height: 310px;
+		margin: 15px;
+		padding: 20px;
+		row-gap: 5px;
+	}
+
+	.name {
+		font-size: 20px;
+	}
+
+	.category {
+		font-size:16px;
+	}
+	
+	}
+
 </style>

@@ -99,7 +99,7 @@
 		/* text-align: center; */
 		margin: 8px;
 		padding: 10px;
-		border: 1px solid #2d4743;
+		border: 2px solid #2d4743;
 		border-radius: 2%;
 	}
 
@@ -122,7 +122,7 @@
 		border: 2px solid #2d4743;
 		text-decoration: none;
 		padding: 3px 5px;
-		border-radius: 20px;
+		border-radius: 50%;
 		cursor: pointer;
 	}
 
@@ -135,7 +135,7 @@
 	.title {
 		margin-bottom: 20px;
 		font-size: 20px;
-		border-bottom: 1px solid #2d4743;
+		border-bottom: 3px solid #2d4743;
 	}
 
 	.infoSection {
@@ -189,6 +189,63 @@
 	@media screen and (min-width: 900px) {
 		.itemContainer {
 			max-width: 700px;
+			font-size:16px;
+			margin: 10px;
 		}
+
+		.itemGrid {
+			row-gap: 10px;
+		}
+
+		.backLink {
+			font-size: 18px;
+			font-weight:700;
+			padding: 5px 7px;
+		}
+
+		.generalSection{
+			margin-right: 20px;
+		}
+
+		.title {
+			font-size: 30px;
+			margin-bottom: 30px;
+		}
+
+		.infoSection {
+			grid-template-columns: 120px 1fr;
+			row-gap: 15px;
+		}
+
+		.imgSection {
+			max-width: 100%;
+		}
+
+		.patternSection,
+		.woolSection,
+		.noteSection {
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		.patternItem {
+		grid-template-columns: 80px 1fr;
+		row-gap: 6px;
+		}
+
+		.woolItem {
+			grid-template-columns: 100px 1fr 100px 1fr;
+			row-gap: 6px;
+			margin-top: 20px;
+		}
+
+		h3 {
+			font-size: 20px;
+		}
+
+		.img {
+			max-width: 60%;
+		}
+
 	}
 </style>
