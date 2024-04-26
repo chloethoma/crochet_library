@@ -55,8 +55,9 @@ app.get("/api/item/:id", async (req, res) => {
 app.post('/api/new_project', async (req, res, next) => {
     try {
         const data = req.body
-        const query = await db.query(postDataNewProject(data))
-        res.status(201).json(query.rows)
+        console.log(data)
+        // const query = await db.query(postDataNewProject(data))
+        // res.status(201).json(query.rows)
     } catch (err) {
         console.error("Erreur d'exécution de POST :", err)
         res.status(500).json({message:err})
