@@ -1,4 +1,4 @@
-<script>
+  <script>
 	import { getPhotoFromCloudinary } from '../../data.js';
 	import Icon from '../../../assets/img/wool_icon.svelte';
 	import { stringify } from 'postcss';
@@ -46,40 +46,54 @@
 		<div class="patternSection">
 			<h3>Patrons</h3>
 			{#if item.pattern[0] !== null}
-				{#each item.pattern as pattern}
-					<div class="patternItem">
-						<div>Nom :</div>
-						<div>{pattern.name}</div>
-						<div>Source :</div>
-						<div>{pattern.source}</div>
-						<div>Lien :</div>
-						<div>{pattern.link}</div>
-						<div>Fichier :</div>
-						<div>{pattern.file}</div>
-					</div>
-				{/each}
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Nom</th>
+						<th scope="col">Source</th>
+						<th scope="col">Lien/fichier</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each item.pattern as pattern}
+						<tr>
+							<td>{pattern.name}</td>
+							<td>{pattern.source}</td>
+							<td><a href={pattern.link}>{pattern.link ? "Lien" : '/'}</a></td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
 			{/if}
 		</div>
-
+		
 		<div class="woolSection">
 			<h3>Fils utilisés</h3>
 			{#if item.wool[0] !== null}
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Marque</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Grammage</th>
+						<th scope="col">Matière</th>
+						<th scope="col">Couleur</th>
+						<th scope="col">Prix</th>
+					</tr>
+				</thead>
+				<tbody>
 				{#each item.wool as wool}
-					<div class="woolItem">
-						<div>Marque :</div>
-						<div>{wool.brand}</div>
-						<div>Matière :</div>
-						<div>{wool.material}</div>
-						<div>Nom :</div>
-						<div>{wool.name}</div>
-						<div>Couleur :</div>
-						<div>{wool.color}</div>
-						<div>Grammage :</div>
-						<div>{wool.grammage} g/pelote</div>
-						<div>Prix :</div>
-						<div>{wool.price} €/pelote</div>
-					</div>
-				{/each}
+				  <tr>
+					<td>{wool.brand}</td>
+					<td>{wool.name}</td>
+					<td>{wool.grammage} g/pelote</td>
+					<td>{wool.material}</td>
+					<td>{wool.color}</td>
+					<td>{wool.price} €/pelote</td>
+				  </tr>
+				  {/each}
+				</tbody>
+			</table>
 			{/if}
 		</div>
 
@@ -93,7 +107,7 @@
 <style>
 	.itemContainer {
 		background-color: rgb(156, 187, 177, 0.5);
-		font-size: 12px;
+		font-size: 10px;
 		color: #2d4743;
 		/* text-align: center; */
 		margin: 8px;
@@ -159,22 +173,6 @@
 		margin-left: 10px;
 	}
 
-	.patternItem {
-		display: grid;
-		grid-template-columns: 55px 1fr;
-		text-align: left;
-		row-gap: 5px;
-		margin-top: 10px;
-	}
-
-	.woolItem {
-		display: grid;
-		grid-template-columns: 70px 1fr 70px 1fr;
-		row-gap: 5px;
-		text-align: left;
-		margin-top: 10px;
-	}
-
 	h3 {
 		font-size: 16px;
 		border-bottom: 1px solid #2d4743;
@@ -184,7 +182,17 @@
 		max-width: 70%;
 	}
 
-	@media screen and (min-width: 900px) {
+	table{
+		border-collapse: collapse;
+	}
+
+	th, td{
+		border:1px solid #2d4743;
+		padding:5px;
+		vertical-align: middle;
+	}
+
+	@media screen and (min-width: 600px) {
 		.itemContainer {
 			max-width: 700px;
 			font-size:16px;
@@ -226,15 +234,8 @@
 			margin-right: 20px;
 		}
 
-		.patternItem {
-		grid-template-columns: 80px 1fr;
-		row-gap: 6px;
-		}
-
-		.woolItem {
-			grid-template-columns: 100px 1fr 100px 1fr;
-			row-gap: 6px;
-			margin-top: 20px;
+		th, td{
+			padding:10px;
 		}
 
 		h3 {

@@ -7,8 +7,8 @@
 	let iconWidth
 	let iconHeight
 	$: innerWidth = 0;
-	$: iconWidth = innerWidth >= 900 ? 64 : 40;
-	$: iconHeight = innerWidth >= 900 ? 64 : 40;
+	$: iconWidth = innerWidth >= 600 ? 64 : 40;
+	$: iconHeight = innerWidth >= 600 ? 64 : 40;
 
 </script>
 
@@ -42,7 +42,7 @@
 	<h1>Ma Bibliothèque Crochet</h1>
 
 	<div class="right-content">
-		{#if innerWidth >= 900}
+		{#if innerWidth >= 600}
 			<Hamburger bind:open type="collapse" --layer-width="35px" --layer-height="4px" --layer-spacing="6px" --color="#db8e9d"/>
 		{:else}
 			<Hamburger bind:open type="collapse" --layer-width="20px" --layer-height="2px" --layer-spacing="5px" --color="#db8e9d"/>
@@ -84,7 +84,7 @@
 		font-size: 15px;
 	}
 
-	@media screen and (min-width: 900px) {
+	@media screen and (min-width: 600px) {
 		.itemContainer {
 			max-width: 700px;
 		}

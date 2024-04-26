@@ -26,8 +26,6 @@
 	</div>
 </a>
 
-<!-- Ancien src pour les photos : ./src/assets/photos/taro_le_dino.jpg -->
-
 <style>
 	.item {
 		flex: 0 0 auto;
@@ -66,7 +64,7 @@
 		text-decoration: none;
 	}
 
-	@media screen and (min-width: 900px) {
+	@media screen and (min-width: 600px) {
 		.item {
 		grid-template-rows: 30px 30px minmax(50px, 240px);
 		min-width:200px;
@@ -85,5 +83,4 @@
 	}
 
 	}
-
 </style>

@@ -37,7 +37,7 @@
         text-decoration: underline;
 	}
 
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 600px) {
         .menu{
             top:110px;
         }
