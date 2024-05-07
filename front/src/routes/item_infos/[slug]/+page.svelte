@@ -4,7 +4,7 @@
 	import ItemInfos from './item_page.svelte';
 
 	const params = $page.params;
-	const itemId = params.slug;
+	const itemId = params.slug;	
 </script>
 
 {#await getItemData(itemId)}
