@@ -55,10 +55,6 @@ const postDataNewProject = (data) => {
   `
 }
 
-const getIdFromPostRequest = () => {
-
-}
-
 const postDataInRelationTable = () => {
   return `-- Insertion dans la table de relation project_wool
 INSERT INTO project_wool (project_id, wool_id)
@@ -69,30 +65,5 @@ INSERT INTO project_pattern (project_id, pattern_id)
 VALUES (project_id, pattern_id);
 `
 }
-
-
-// WITH inserted_project AS (
-//   INSERT INTO project (name, category, customer, size, hook_number, notes, photo, year, month)
-//   VALUES ('${data.name}', '${data.category}', '${data.customer}', '${data.size}', ${data.hook_number}, '${data.notes}', '${data.photo}', '${data.year}', '${data.month}')
-//   RETURNING id
-//   ),
-// inserted_wool AS (
-//   INSERT INTO wool (brand, name, grammage, color, material, price)
-//   VALUES ('${data.brand}', '${data.name}', ${data.grammage}, '${data.color}', '${data.material}', ${data.price})
-//   RETURNING id
-// ),
-// inserted_pattern AS (
-// INSERT INTO pattern (name, source, link, file)
-// VALUES ('${data.name}', '${data.source}', '${data.link}', '${data.file}')
-// RETURNING id
-// )
-// INSERT INTO wool_project_relation (project_id, wool_id)
-// SELECT inserted_project.id, inserted_wool.id FROM inserted_project, inserted_wool;
-
-// INSERT INTO pattern_project_relation (project_id, pattern_id)
-// SELECT inserted_project.id, inserted_pattern.id FROM inserted_project, inserted_pattern;
-// `
-
-
 
 module.exports = { queryAllData, getDataByProject, postDataNewProject };

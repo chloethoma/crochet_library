@@ -75,7 +75,6 @@ app.get("/api/item/:id", async (req, res) => {
             project.notes;`,
             values:[itemId]
         };
-        // const queryResult = await db.query(getDataByProject(itemId))
         const queryResult = await db.query(query)
         res.status(200).json(queryResult.rows[0])
     } catch(err) {
@@ -87,14 +86,65 @@ app.get("/api/item/:id", async (req, res) => {
 app.post('/api/new_project', async (req, res) => {
     try {
         const data = req.body
+        
+        try {
+            await db.query('begin')
+            const queryProject = `
+            insert into project (name, category, customer, size, hook_number, notes, photo, year, month)
+            values ($1, $2, $3, $4, $5, $6, $7, $8 ,$9)
+            returning id
+            `
+            const valuesProject = [data.name, data.category, data.customer, data.size, data.hook_number, data.notes, data.photo, data.year, data.month]
+            const queryProjectInsert = await db.query(queryProject, valuesProject)
+            
+            for (const pattern of data.pattern) {
+                const queryPattern = `
+                insert into pattern (name, source, link)
+                values ($1, $2, $3)
+                returning id
+                `
+                const valuesPattern = [pattern.name, pattern.source, pattern.link]
+                const queryPatternInsert = await db.query(queryPattern, valuesPattern)
 
-        // const query = await db.query(postDataNewProject(data))
-        res.status(201).json(data)
+                const queryPatternRelation = `
+                insert into pattern_project_relation (project_id, pattern_id)
+                values ($1, $2)
+                `
+                const valuesPatternRelation = [queryProjectInsert.rows[0].id, queryPatternInsert.rows[0].id]
+                await db.query(queryPatternRelation, valuesPatternRelation)
+            }
+            
+            for (const wool of data.wool) {
+                const queryWool = `
+                insert into wool (brand, name, grammage, color, material, price)
+                values ($1, $2, $3, $4, $5, $6)
+                returning id          
+                `
+                const valuesWool = [wool.brand, wool.name, wool.grammage, wool.color, wool.material, wool.price]
+                const queryWoolInsert = await db.query(queryWool, valuesWool)
+
+                const queryWoolRelation = `
+                insert into wool_project_relation (project_id, wool_id)
+                values ($1, $2)
+                `
+                const valuesWoolRelation = [queryProjectInsert.rows[0].id, queryWoolInsert.rows[0].id]
+                await db.query(queryWoolRelation, valuesWoolRelation)
+            }
+
+            await db.query('commit')
+
+        } catch (error) {
+            await db.query('rollback')
+            throw error
+        }
+        res.status(201).json({message:'succeed'})
+
     } catch (err) {
         console.error("Erreur d'exécution de POST :", err)
         res.status(500).json({message:err})
     }
 });
+
 
 module.exports = app;
 
