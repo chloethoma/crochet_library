@@ -21,16 +21,19 @@ app.use((req, res, next) => {
   });
 
 /*
+  Juste pour vérifier que la route principale fonctionne bien
+*/
+  app.get('/', async (req, res) => {
+      try {
+          res.status(200).json({message:"Route principale OK !"})
+        } catch (error) {
+            res.status(500).json({message:"Route principale ERROR"})
+        }
+    })
+    
+/*
     Configuration route API. Voir détail des routes dans routes.js
 */
-app.get('/', async (req, res) => {
-    try {
-        res.status(200).json({message:"OK !"})
-    } catch (error) {
-        res.status(500).json({message:"ERROR"})
-    }
-})
-
 app.use('/api', routes)
 
 module.exports = app;
