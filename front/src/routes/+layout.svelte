@@ -38,7 +38,6 @@
 		</svg>
 	</div>
 
-
 	<h1>Ma Bibliothèque Crochet</h1>
 
 	<div class="right-content">
@@ -51,7 +50,6 @@
 </header>
 
 <Menu bind:open />
-
 <slot />
 
 <style>

@@ -13,7 +13,9 @@
 	</div>
 {:catch error}
 	<p>Something wrong...</p>
+	{@debug error}
 {/await}
+
 
 <style>
 	.itemContainer {
