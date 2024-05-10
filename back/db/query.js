@@ -1,12 +1,16 @@
 /* 
   GET api/all - texte de la query pour récupérer les datas de tous les projets pour la Home Page
 */
-const getAllData = `SELECT id, name, category, photo FROM project ORDER BY id ASC`;
+exports.getAllData = () => {
+  return {
+    text:`SELECT id, name, category, photo FROM project ORDER BY id ASC`
+}
+};
 
 /* 
   GET api/item/id - texte de la query pour récupérer toutes les datas pour un projet, selon l'id
 */
-const getItemById = (itemId) => {
+exports.getItemById = (itemId) => {
   return {
   text: `select
   project.*,
@@ -41,12 +45,13 @@ group by
   project.hook_number,
   project.notes;`,
   values: [itemId]
-}};
+}
+};
 
 /* 
   POST api/new_project - texte de la query pour insérer les données dans la table PROJECT
 */
-const postInTableProject = (data) => {
+exports.postInTableProject = (data) => {
   return {
     text:`
     insert into project (name, category, customer, size, hook_number, notes, photo, year, month)
@@ -55,12 +60,12 @@ const postInTableProject = (data) => {
     `,
     values:[data.name, data.category, data.customer, data.size, data.hook_number, data.notes, data.photo, data.year, data.month]
 }
-}
+};
 
 /* 
   POST api/new_project - texte de la query pour insérer les données dans la table PATTERN
 */
-const postInTablePattern = (pattern) => {
+exports.postInTablePattern = (pattern) => {
   return {
     text:`
     insert into pattern (name, source, link)
@@ -74,7 +79,7 @@ const postInTablePattern = (pattern) => {
 /* 
   POST api/new_project - texte de la query pour insérer les données dans la table de relation PROJECT/PATTERN
 */
-const postInTablePatternProjectRelation = (queryProjectInsert, queryPatternInsert) => {
+exports.postInTablePatternProjectRelation = (queryProjectInsert, queryPatternInsert) => {
   return {
     text:`
     insert into pattern_project_relation (project_id, pattern_id)
@@ -87,7 +92,7 @@ const postInTablePatternProjectRelation = (queryProjectInsert, queryPatternInser
 /* 
   POST api/new_project - texte de la query pour insérer les données dans la table WOOL
 */
-const postInTableWool = (wool) => {
+exports.postInTableWool = (wool) => {
   return {
     text:`
     insert into wool (brand, name, grammage, color, material, price)
@@ -96,12 +101,12 @@ const postInTableWool = (wool) => {
     `,
     values:[wool.brand, wool.name, wool.grammage, wool.color, wool.material, wool.price]
 }
-}
+};
 
 /* 
   POST api/new_project - texte de la query pour insérer les données dans la table de relation PROJECT/WOOL
 */
-const postInTableWoolProjectRelation = (queryProjectInsert, queryWoolInsert) => {
+exports.postInTableWoolProjectRelation = (queryProjectInsert, queryWoolInsert) => {
   return {
     text:`
     insert into wool_project_relation (project_id, wool_id)
@@ -109,6 +114,4 @@ const postInTableWoolProjectRelation = (queryProjectInsert, queryWoolInsert) => 
     `,
     values:[queryProjectInsert.rows[0].id, queryWoolInsert.rows[0].id]
 }
-}
-
-module.exports = { getAllData, getItemById, postInTableProject, postInTablePattern, postInTablePatternProjectRelation, postInTableWool, postInTableWoolProjectRelation };
+};

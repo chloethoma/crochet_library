@@ -1,19 +1,16 @@
-const { Pool } = require('pg');
-const query = require('./query');
-
 /*
-    Connexion database SUPABASE
+    db/index.js : connexion à la database
+    db/query.js : contient toutes les queryText
 */
-const db = new Pool({
-    connectionString:process.env.SUPABASE_URI
-});
+const db = require('./db/index');
+const query = require('./db/query');
 
 /*
     Route GET api/all : récupère les données principales de tous les projets (name, category, photo). Affichage sur la home page.
 */
 exports.getAll = async (req, res) => {
     try {
-        const queryText = query.getAllData;
+        const queryText = query.getAllData();
         const queryResult = await db.query(queryText);
         res.status(200).json(queryResult.rows);
     } catch (error) {
