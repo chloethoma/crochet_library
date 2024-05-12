@@ -55,11 +55,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					{#each item.pattern as pattern}
+					{#each item.pattern as {name, source, link}}
 						<tr>
-							<td>{pattern.name}</td>
-							<td>{pattern.source}</td>
-							<td><a href={pattern.link}>{pattern.link ? "Lien" : '/'}</a></td>
+							<td>{name}</td>
+							<td>{source}</td>
+							<td><a href={link}>{link ? "Lien" : '/'}</a></td>
 						</tr>
 					{/each}
 				</tbody>
@@ -82,14 +82,14 @@
 					</tr>
 				</thead>
 				<tbody>
-				{#each item.wool as wool}
+				{#each item.wool as {brand, name, grammage, material, color, price}}
 				  <tr>
-					<td>{wool.brand}</td>
-					<td>{wool.name}</td>
-					<td>{wool.grammage} g/pelote</td>
-					<td>{wool.material}</td>
-					<td>{wool.color}</td>
-					<td>{wool.price} €/pelote</td>
+					<td>{brand}</td>
+					<td>{name}</td>
+					<td>{grammage} g/pelote</td>
+					<td>{material}</td>
+					<td>{color}</td>
+					<td>{price}€ / pelote</td>
 				  </tr>
 				  {/each}
 				</tbody>

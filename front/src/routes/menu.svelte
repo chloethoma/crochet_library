@@ -2,12 +2,16 @@
     import {fly} from 'svelte/transition';
     export let open;
 
+    const closeMenu = () => {
+        open = !open
+    }
+
 </script>
 
 {#if open}
     <div class="menu" transition:fly={{ y: -15, delay: 50}}>
-        <p transition:fly={{ y: -15, delay: 50}}><a href="/">Bibliothèque</a></p>
-        <p transition:fly={{ y: -15, delay: 50}}><a href="/add_project">Ajouter un projet</a></p>
+        <p transition:fly={{ y: -15, delay: 50}}><a href="/" on:click={closeMenu}>Bibliothèque</a></p>
+        <p transition:fly={{ y: -15, delay: 50}}><a href="/add_project" on:click={closeMenu}>Ajouter un projet</a></p>
     </div>
 {/if}
 
