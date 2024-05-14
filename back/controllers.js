@@ -36,9 +36,9 @@ exports.getItemById = async (req, res) => {
     Route POST new_project : insère toutes les données d'un nouveau projet dans les tables project, wool, pattern + tables relation (x2)
 */
 exports.postNewProject = async (req, res) => {
+    console.log(req.body)
+    const data = req.body
     try {
-        const data = req.body
-        
         await db.query('begin')
         const queryProject = query.postInTableProject(data)
         const queryProjectInsert = await db.query(queryProject)
@@ -61,9 +61,15 @@ exports.postNewProject = async (req, res) => {
 
         await db.query('commit')
         res.status(201).json({message:'succeed'})
+
+        console.log(`Succeed / Content-Type: ${res.get('Content-Type')}`);
         
     } catch (error) {
         await db.query('rollback')
-        res.status(500).json({"Erreur d'exécution de POST api/new_project":`${error}`})
+        res.status(500).json({
+            "Erreur d'exécution de POST api/new_project":`${error}`,
+            "Objet":JSON.stringify(data)
+        });
+        console.log(`Fail / Content-Type: ${res.get('Content-Type')}`);
     }
 };
