@@ -34,9 +34,12 @@
         },
         body: JSON.stringify(formData)
       })
+
+      alert("Projet crée !")
       // const resultat = await response.json()
       // console.log("reussite", resultat)
     } catch (error) {
+      alert("Erreur !")
       console.error("Erreur", error)
     }
   }
