@@ -1,12 +1,7 @@
 <script>
 	import Item from '../lib/components/ItemCard.svelte';
-	import {onMount} from 'svelte';
 	import { getAllData } from './data.js';
 
-	onMount(() => {
-		getAllData()
-	})
-	
 </script>
 
 {#await getAllData()}
