@@ -1,6 +1,6 @@
 <script>
-	import {getPhotoFromCloudinary} from './data.js'
-	import Icon from '../assets/img/wool_icon.svelte';
+	import {getPhotoFromCloudinary} from '../../routes/data.js'
+	import Icon from './WoolIcon.svelte';
 
 	export let element;
 </script>

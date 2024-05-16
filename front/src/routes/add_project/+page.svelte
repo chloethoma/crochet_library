@@ -1,5 +1,5 @@
 <script>
-  import FormContainer from './form.svelte'
+  import FormContainer from '../../lib/components/Form.svelte'
 </script>
 
 <FormContainer />

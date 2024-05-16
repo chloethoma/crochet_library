@@ -1,6 +1,6 @@
   <script>
 	import { getPhotoFromCloudinary } from '../../data.js';
-	import Icon from '../../../assets/img/wool_icon.svelte';
+	import Icon from '../../../lib/components/WoolIcon.svelte';
 	// import { stringify } from 'postcss';
 
 	export let item;

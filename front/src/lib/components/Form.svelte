@@ -1,5 +1,5 @@
 <script>
-  import {Fileupload} from 'flowbite-svelte';
+  import UploadWidget from './UploadWidget.svelte'
 
   let selectedCategories = ['Amigurumi', 'Accessoire', 'Enfant', 'Maison', 'Vêtement']
   let name;
@@ -74,6 +74,7 @@
   <label for="hook_number">N° crochet</label>
   <input type="number" min="0" step="0.5" id="hook_number" bind:value={hookNumber}>
 
+  <UploadWidget />
     <!-- <label for="photo">Photo</label>
   <Fileupload></Fileupload> -->
   <!-- <input type="text" id="photo" name="photo"> -->

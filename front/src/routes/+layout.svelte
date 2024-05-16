@@ -1,7 +1,7 @@
 <script>
 	// import '../app.pcss';
 	import { Hamburger } from 'svelte-hamburgers';
-	import Menu from './menu.svelte';
+	import Menu from '../lib/components/Menu.svelte';
 	let open;
 
 	let iconWidth
