@@ -1,5 +1,6 @@
 <script>
     import {onMount} from 'svelte';
+
     let widget;
 
     onMount(() => {
@@ -21,4 +22,4 @@
     }
 </script>
 
-<button on:click|preventDefault={handleClick}>Upload</button>
+<button on:click|preventDefault={handleClick}>Upload photo</button>

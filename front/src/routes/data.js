@@ -1,5 +1,6 @@
     import { Cloudinary } from "@cloudinary/url-gen/index";
-    
+
+
     export const getAllData = async () => {
         const res = await fetch('https://crochet-library-7cv7.vercel.app/api/all');
         // const res = await fetch('http://localhost:3000/api/all');

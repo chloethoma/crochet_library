@@ -50,44 +50,39 @@
   <label for="name">Nom du projet</label>
   <input type="text" id="name" bind:value={name} required>
 
-  <label for="category">Catégorie</label>
-  <select id="category" bind:value={category}>
-      {#each selectedCategories as selectedCategory}
-          <option value={selectedCategory}>{selectedCategory}</option>
-      {/each}
-  </select>
-
-  <div class="dateContainer">
-    <label for="date">Date de réalisation</label>
-    <label for="year">Année</label>
-    <input type="number" id="year" bind:value={year} required>
-    <label for="month">Mois</label>
-    <input type="number" id="month" min="1" max="12" bind:value={month} required>
+  <div class="container">
+    <label for="category">Catégorie</label>
+    <label for="customer">Destinataire</label>
+    <select id="category" bind:value={category}>
+        {#each selectedCategories as selectedCategory}
+            <option value={selectedCategory}>{selectedCategory}</option>
+        {/each}
+    </select>
+    
+    <input type="text" id="customer" bind:value={customer}>
+  </div>
+  
+  <div class="container">
+      <label for="year">Année</label>
+      <label for="month">Mois</label>
+      <input type="number" id="year" min="1900" max="2100" bind:value={year} required>
+      <input type="number" id="month" min="1" max="12" bind:value={month} required>
   </div>
 
-  <label for="customer">Destinataire</label>
-  <input type="text" id="customer" bind:value={customer}>
-
-  <label for="size">Dimensions (en cm)</label>
-  <input type="text" id="size" bind:value={size}>
-
-  <label for="hook_number">N° crochet</label>
-  <input type="number" min="0" step="0.5" id="hook_number" bind:value={hookNumber}>
-
-  <UploadWidget />
-    <!-- <label for="photo">Photo</label>
-  <Fileupload></Fileupload> -->
-  <!-- <input type="text" id="photo" name="photo"> -->
-  <!-- <label for="photo">Photo:</label>
-  <input type="file" id="photo" bind:files={photo} /> -->
-
-
-  <label for="notes">Notes</label>
-  <textarea id="notes" bind:value={notes}></textarea>
-  
+  <div class="container">
+    <label for="size">Dimensions (cm)</label>
+    <label for="hook_number">N° crochet</label>
+    <input type="text" id="size" bind:value={size}>    
+    <input type="number" min="0" step="0.5" id="hook_number" bind:value={hookNumber}>
+  </div>
+    
+    <label for="notes">Notes</label>
+    <textarea id="notes" bind:value={notes}></textarea>
+    
+    <UploadWidget />
+    
   <button type="button" on:click={addPattern}>Ajouter pattern</button>
   {#each pattern as  {name, source, link}}
-  <div>
     <label for="name">Nom</label>
     <input type="text" id="name" bind:value={name} required>
     
@@ -96,30 +91,30 @@
     
     <label for="link">Fichier</label>
     <input type="text" id="link" bind:value={link}>
-  </div>
   {/each}
 
   <button type="button" on:click={addWool}>Ajouter yarn</button>
   {#each wool as  {brand, name, grammage, color, material, price}}
-  <div>
-    <label for="brand">Marque</label>
-    <input type="text" id="brand" bind:value={brand} required>
+    <div class="container">
+      <label for="brand">Marque</label>
+      <label for="name">Nom</label>
+      <input type="text" id="brand" bind:value={brand} required>
+      <input type="text" id="name" bind:value={name} required>
+    </div>
 
-    <label for="name">Nom</label>
-    <input type="text" id="name" bind:value={name} required>
-
-    <label for="grammage">Grammage</label>
-    <input type="number" min="1" id="grammage" bind:value={grammage}>
+    <div class="container">
+      <label for="grammage">Grammage (g/pelote)</label>
+      <label for="material">Matière</label>
+      <input type="number" min="1" id="grammage" bind:value={grammage}>
+      <input type="text" id="material" bind:value={material}>
+    </div>
     
-    <label for="material">Matière</label>
-    <input type="text" id="material" bind:value={material}>
-    
-    <label for="color">Couleur</label>
-    <input type="text" id="color" bind:value={color}>
-
-    <label for="price">Prix</label>
-    <input type="number" min="1" step="any" id="price" bind:value={price}>
-  </div>
+    <div class="container">
+      <label for="color">Couleur</label>
+      <label for="price">Prix (€)</label>
+      <input type="text" id="color" bind:value={color}>  
+      <input type="number" min="1" step="any" id="price" bind:value={price}>
+    </div>
   {/each}
 
   <button type="submit">Enregistrer</button>
@@ -135,4 +130,12 @@
   label{
       margin-top:10px;
   }
+
+  .container {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    column-gap: 15px;
+  }
+
 </style>
